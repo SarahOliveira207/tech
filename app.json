@@ -25,6 +25,16 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+
+    "plugins": [
+      "expo-location",
+      {
+        "locationAlwaysAndWhenInUsePermission": {
+          "purpose": "Allow TechCall to access your location."
+        }
+      }
+    ]
   }
+
 }
