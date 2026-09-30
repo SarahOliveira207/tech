@@ -28,12 +28,12 @@
     },
 
     "plugins": [
-      "expo-location",
-      {
-        "locationAlwaysAndWhenInUsePermission": {
-          "purpose": "Allow TechCall to access your location."
+      [
+        "expo-location",
+        {
+        "locationAlwaysAndWhenInUsePermission": "Allow TechCall to access your location."
         }
-      }
+      ]
     ]
   }
 

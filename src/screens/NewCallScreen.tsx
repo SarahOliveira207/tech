@@ -15,7 +15,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, ALUNO_ID } from '../firebase/config';
 
 
-export default function NewCallScreen() {
+export default function NewCallScreen({ navigation }: any) {
     const [description, setDescription] = useState('');
     const [photoUri, setPhotoUri] = useState<string | null>(null);
     const [address, setAddress] = useState<string | null>(null);
@@ -82,17 +82,18 @@ export default function NewCallScreen() {
         
         try {
             await addDoc(collection(db, 'alunos', ALUNO_ID, 'chamados'), {
-            description,
-            photoUri,
-            address,
-            status: 'aberto',
-            criadoEm: serverTimestamp(),
+                description,
+                photoUri,
+                address,
+                status: 'aberto',
+                criadoEm: serverTimestamp(),
             });
         
             Alert.alert('Sucesso', 'Chamado registrado!');
             setDescription('');
             setPhotoUri(null);
             setAddress(null);
+            navigation.navigate('CallList');
         } catch (error) {
             Alert.alert('Erro', 'Não foi possível salvar o chamado. Tente novamente.');
         } finally {
