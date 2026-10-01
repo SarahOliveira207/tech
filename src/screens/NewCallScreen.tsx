@@ -15,7 +15,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db, ALUNO_ID } from '../firebase/config';
 
 
-export default function NewCallScreen({ navigation }: any) {
+export default function NewCallScreen() {
     const [description, setDescription] = useState('');
     const [photoUri, setPhotoUri] = useState<string | null>(null);
     const [address, setAddress] = useState<string | null>(null);
@@ -65,7 +65,7 @@ export default function NewCallScreen({ navigation }: any) {
             });
 
             if (local) {
-                const enderecoFormatado = `${local.street && 'Endereço nao identificado'}, ${local.city ?? ''} - ${local.region ?? ''}`;
+                const enderecoFormatado = `${local.street ?? 'Endereço não identificado'}, ${local.city ?? ''} - ${local.region ?? ''}`;
                 setAddress(enderecoFormatado);
             } else {
                 setAddress('Endereço não identificado');
@@ -93,7 +93,7 @@ export default function NewCallScreen({ navigation }: any) {
             setDescription('');
             setPhotoUri(null);
             setAddress(null);
-            navigation.navigate('CallList');
+            //navigation.navigate('CallList');
         } catch (error) {
             Alert.alert('Erro', 'Não foi possível salvar o chamado. Tente novamente.');
         } finally {
@@ -110,9 +110,9 @@ export default function NewCallScreen({ navigation }: any) {
                 placeholder="Ex.: Notebook não liga..."
                 value={description}
                 onChangeText={setDescription}
-                multiline> sla</TextInput>
+                multiline />
         
-        <Text style={styles.label}>Foto do equipamento</Text>
+            <Text style={styles.label}>Foto do equipamento</Text>
 
         {photoUri ? (
             <View>
